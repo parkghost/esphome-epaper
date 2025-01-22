@@ -1,4 +1,4 @@
-#include "e0213a09.h"
+#include "hink_e0213a09.h"
 #include <cstdint>
 #include "esphome/core/log.h"
 
@@ -230,7 +230,7 @@ namespace esphome
 
     void E0213A09::dump_config()
     {
-      LOG_DISPLAY("", "e-Paper", this)
+      LOG_DISPLAY("", "HINK e-Paper", this)
       ESP_LOGCONFIG(TAG, "  Model: E0213A09");
       LOG_PIN("  CS Pin: ", this->cs_)
       LOG_PIN("  Reset Pin: ", this->reset_pin_)
