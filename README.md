@@ -11,7 +11,7 @@ The following e-paper display models are supported by this component:
 - **gdem029t94** 2.9" b/w 128x296 Good Display GDEM029T94 / Waveshare 2.9" V2(FPC-7519rev.b)
 
 ## Usage
-```
+```yaml
 external_components:
   - source: github://parkghost/epd
     components: [ waveshare_epaper ]
