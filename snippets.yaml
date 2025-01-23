@@ -1,0 +1,66 @@
+switch:
+  - platform: template
+    name: "White Screen"
+    id: display_white_screen
+    optimistic: true
+    entity_category: "config"
+    on_turn_on:
+      - script.wait: refresh_display
+      - script.execute:
+          id: refresh_display
+          reason: "white_screen_on"
+
+    on_turn_off:
+      - script.wait: refresh_display
+      - script.execute:
+          id: refresh_display
+          reason: "white_screen_off"
+
+button:
+  - platform: template
+    name: "Refresh"
+    on_press:
+      - script.wait: refresh_display
+      - script.execute:
+          id: refresh_display
+          reason: "refresh_button"
+
+  - platform: template
+    name: "Full Refresh"
+    on_press:
+      - lambda: |-
+          id(my_display).full_refresh();
+
+  - platform: template
+    name: "Store Mode"
+    entity_category: "config"
+    on_press:
+      - lambda: |-
+          id(display_white_screen).publish_state(true);
+          id(my_display).full_refresh();
+
+text_sensor:
+  - platform: template
+    id: update_reason
+    name: "Display Update Reason"
+    entity_category: "diagnostic"
+
+script:
+  - id: refresh_and_wait
+    parameters:
+      reason: string
+    mode: queued
+    max_runs: 2
+    then:
+      - lambda: id(refresh_display)->execute(reason);
+      - script.wait: refresh_display
+      - delay: $event_display_update_interval
+
+  - id: refresh_display
+    parameters:
+      reason: string
+    then:
+      - component.update: my_display
+      - lambda: |-
+          id(update_reason).publish_state(reason);
+      - delay: 1s
