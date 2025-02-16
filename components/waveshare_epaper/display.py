@@ -35,11 +35,15 @@ GDEH029A1 = waveshare_epaper_ns.class_(
 GDEM029T94 = waveshare_epaper_ns.class_(
     "GDEM029T94", WaveshareEPaper
 )
+GDEW029T5D = waveshare_epaper_ns.class_(
+    "GDEW029T5D", WaveshareEPaper
+)
 
 MODELS = {
-    "e0213a09": ("c", E0213A09),  # HINK-E0213A09  104x212, SSD1675A (IL3897)
-    "gdeh029a1": ("c", GDEH029A1), # GDEH029A1  128x296, SSD1608 (IL3820), (E029A01-FPC-A1 SYX1553)
-    "gdem029t94": ("c", GDEM029T94), # GDEM029T94  128x296, SSD1680, (FPC-7519 rev.b), Waveshare 2.9" V2 variant
+    "e0213a09": ("c", E0213A09),  # HINK-E0213A09  2.13" 104x212, SSD1675A (IL3897)
+    "gdeh029a1": ("c", GDEH029A1), # GDEH029A1  2.9" 128x296, SSD1608 (IL3820), (E029A01-FPC-A1 SYX1553)
+    "gdem029t94": ("c", GDEM029T94), # GDEM029T94  2.9" 128x296, SSD1680, (FPC-7519 rev.b), Waveshare 2.9" V2 variant
+    "gdew029t5d": ("c", GDEW029T5D), # GDEW029T5D  2.9" 128x296, UC8151D (IL0373F), (WFT0290CZ10 LW)
 }
 
 def validate_full_update_every_only_types_ac(value):
