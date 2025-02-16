@@ -9,23 +9,14 @@ namespace esphome
 {
   namespace waveshare_epaper
   {
+    const char *const GDEH029A1::TAG = "gdeh029a1";
 
-    static const char *const TAG = "gdeh029a1";
-
-    static const uint16_t WIDTH = 128;
-
-    static const uint16_t HEIGHT = 296;
-
-    static const uint16_t IDLE_TIMEOUT = 1000;
-
-    static const uint8_t LUT_SIZE = 30;
-
-    static const uint8_t LUT_DATA_full[LUT_SIZE] =
+    const uint8_t GDEH029A1::LUT_DATA_FULL[] PROGMEM =
         {
             0x50, 0xAA, 0x55, 0xAA, 0x11, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0xFF, 0xFF, 0x1F, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
 
-    static const uint8_t LUT_DATA_part[LUT_SIZE] =
+    const uint8_t GDEH029A1::LUT_DATA_PART[] PROGMEM =
         {
             0x10, 0x18, 0x18, 0x08, 0x18, 0x18, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x13, 0x14, 0x44, 0x12, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -64,11 +55,11 @@ namespace esphome
       this->init_display_();
       if (full_update)
       {
-        this->write_lut_(LUT_DATA_full, sizeof(LUT_DATA_full));
+        this->write_lut_(LUT_DATA_FULL, sizeof(LUT_DATA_FULL));
       }
       else
       {
-        this->write_lut_(LUT_DATA_part, sizeof(LUT_DATA_part));
+        this->write_lut_(LUT_DATA_PART, sizeof(LUT_DATA_PART));
       }
       this->command(0x22);
       this->data(0xc0);

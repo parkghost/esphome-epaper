@@ -9,18 +9,9 @@ namespace esphome
 {
   namespace waveshare_epaper
   {
+    const char *const GDEM029T94::TAG = "gdem029t94";
 
-    static const char *const TAG = "gdem029t94";
-
-    static const uint16_t WIDTH = 128;
-
-    static const uint16_t HEIGHT = 296;
-
-    static const uint16_t IDLE_TIMEOUT = 5000;
-
-    static const uint8_t LUT_SIZE = 153;
-
-    static const uint8_t LUT_DATA_part[LUT_SIZE] =
+    const uint8_t GDEM029T94::LUT_DATA_PART[] PROGMEM =
         {
             0x0, 0x40, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
             0x80, 0x80, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
@@ -106,7 +97,7 @@ namespace esphome
         this->end_data_();
 
         this->setPartialRamArea_(0, 0, WIDTH, HEIGHT);
-        this->write_lut_(LUT_DATA_part, sizeof(LUT_DATA_part));
+        this->write_lut_(LUT_DATA_PART, sizeof(LUT_DATA_PART));
 
         this->command(0x22);
         this->data(0xcc);

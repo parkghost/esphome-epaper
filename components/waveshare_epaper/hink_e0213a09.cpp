@@ -10,17 +10,9 @@ namespace esphome
   namespace waveshare_epaper
   {
 
-    static const char *const TAG = "e0213a09";
+    const char *const E0213A09::TAG = "e0213a09";
 
-    static const uint16_t WIDTH = 104;
-
-    static const uint16_t HEIGHT = 212;
-
-    static const uint16_t IDLE_TIMEOUT = 2500;
-
-    static const uint8_t LUT_SIZE = 70;
-
-    static const uint8_t LUT_DATA_full[LUT_SIZE] =
+    const uint8_t E0213A09::LUT_DATA_FULL[] PROGMEM =
         {
             0x80, 0x60, 0x40, 0x00, 0x00, 0x00, 0x00, // LUT0: BB:     VS 0 ~7
             0x10, 0x60, 0x20, 0x00, 0x00, 0x00, 0x00, // LUT1: BW:     VS 0 ~7
@@ -36,7 +28,7 @@ namespace esphome
             0x00, 0x00, 0x00, 0x00, 0x00,             // TP6 A~D RP6
     };
 
-    static const uint8_t LUT_DATA_part[LUT_SIZE] =
+    const uint8_t E0213A09::LUT_DATA_PART[] PROGMEM =
         {
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // LUT0: BB:     VS 0 ~7
             0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // LUT1: BW:     VS 0 ~7
@@ -86,13 +78,13 @@ namespace esphome
       this->init_display_();
       if (full_update)
       {
-        this->write_lut_(LUT_DATA_full, sizeof(LUT_DATA_full));
+        this->write_lut_(LUT_DATA_FULL, sizeof(LUT_DATA_FULL));
       }
       else
       {
         this->command(0x2C); // VCOM Voltage
         this->data(0x26);    // NA ??
-        this->write_lut_(LUT_DATA_part, sizeof(LUT_DATA_part));
+        this->write_lut_(LUT_DATA_PART, sizeof(LUT_DATA_PART));
       }
       this->command(0x22);
       this->data(0xc0);

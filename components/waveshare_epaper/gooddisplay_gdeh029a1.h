@@ -8,6 +8,14 @@ namespace esphome
     class GDEH029A1 : public WaveshareEPaper
     {
     public:
+      static const char *const TAG;
+
+      static const uint16_t WIDTH = 128;
+
+      static const uint16_t HEIGHT = 296;
+
+      static const uint16_t IDLE_TIMEOUT = 1000;
+
       void initialize() override;
 
       void dump_config() override;
@@ -37,7 +45,11 @@ namespace esphome
 
       void setPartialRamArea_(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
 
+    private:
+      static const uint8_t LUT_DATA_FULL[], LUT_DATA_PART[];
+
       uint32_t at_update_{0}, full_update_every_{30};
+
       bool hibernating_{false};
     };
 
