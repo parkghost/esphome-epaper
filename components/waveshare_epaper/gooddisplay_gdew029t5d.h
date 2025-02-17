@@ -48,9 +48,11 @@ namespace esphome
     private:
       static const uint8_t LUT_VCOM1[], LUT_WW1[], LUT_BW1[], LUT_WB1[], LUT_BB1[];
 
-      uint8_t oldData[WIDTH * HEIGHT / 8u];
+      static uint8_t oldData[];
 
-      uint32_t at_update_{0}, full_update_every_{30};
+      static uint32_t at_update_;
+
+      uint32_t full_update_every_{30};
 
       bool hibernating_{false};
     };

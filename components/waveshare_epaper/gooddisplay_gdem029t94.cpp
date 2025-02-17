@@ -32,6 +32,8 @@ namespace esphome
             0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
             0x22, 0x22, 0x22, 0x22, 0x22, 0x22, 0x0, 0x0, 0x0};
 
+    RTC_DATA_ATTR uint32_t GDEM029T94::at_update_ = 0;
+
     int GDEM029T94::get_width_internal() { return WIDTH; }
 
     int GDEM029T94::get_width_controller() { return WIDTH; }

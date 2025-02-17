@@ -55,6 +55,10 @@ namespace esphome
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+            
+    RTC_DATA_ATTR uint32_t GDEW029T5D::at_update_ = 0;
+
+    RTC_DATA_ATTR uint8_t GDEW029T5D::oldData[WIDTH * HEIGHT / 8u];
 
     int GDEW029T5D::get_width_internal() { return WIDTH; }
 
