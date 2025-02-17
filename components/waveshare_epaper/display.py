@@ -38,12 +38,16 @@ GDEM029T94 = waveshare_epaper_ns.class_(
 GDEW029T5D = waveshare_epaper_ns.class_(
     "GDEW029T5D", WaveshareEPaper
 )
+GDEW042Z15 = waveshare_epaper_ns.class_(
+    "GDEW042Z15", WaveshareEPaper
+)
 
 MODELS = {
     "e0213a09": ("c", E0213A09),  # HINK-E0213A09  2.13" 104x212, SSD1675A (IL3897)
     "gdeh029a1": ("c", GDEH029A1), # GDEH029A1  2.9" 128x296, SSD1608 (IL3820), (E029A01-FPC-A1 SYX1553)
     "gdem029t94": ("c", GDEM029T94), # GDEM029T94  2.9" 128x296, SSD1680, (FPC-7519 rev.b), Waveshare 2.9" V2 variant
     "gdew029t5d": ("c", GDEW029T5D), # GDEW029T5D  2.9" 128x296, UC8151D (IL0373F), (WFT0290CZ10 LW)
+    "gdew042z15": ("b", GDEW042Z15), # GDEW042Z15  4.2" 400x300, UC8176 (IL0398), (WFT0420CZ15 LW)
 }
 
 def validate_full_update_every_only_types_ac(value):
@@ -60,23 +64,14 @@ def validate_full_update_every_only_types_ac(value):
         )
     return value
 
-
-def validate_reset_pin_required(config):
-    if CONF_RESET_PIN not in config:
-        raise cv.Invalid(
-            f"'{CONF_RESET_PIN}' is required for model {config[CONF_MODEL]}"
-        )
-    return config
-
-
 CONFIG_SCHEMA = cv.All(
     display.FULL_DISPLAY_SCHEMA.extend(
         {
             cv.GenerateID(): cv.declare_id(WaveshareEPaperBase),
             cv.Required(CONF_DC_PIN): pins.gpio_output_pin_schema,
             cv.Required(CONF_MODEL): cv.one_of(*MODELS, lower=True),
-            cv.Optional(CONF_RESET_PIN): pins.gpio_output_pin_schema,
-            cv.Optional(CONF_BUSY_PIN): pins.gpio_input_pin_schema,
+            cv.Required(CONF_RESET_PIN): pins.gpio_output_pin_schema,
+            cv.Required(CONF_BUSY_PIN): pins.gpio_input_pin_schema,
             cv.Optional(CONF_FULL_UPDATE_EVERY): cv.int_range(min=1, max=4294967295),
             cv.Optional(CONF_RESET_DURATION): cv.All(
                 cv.positive_time_period_milliseconds,
@@ -87,7 +82,6 @@ CONFIG_SCHEMA = cv.All(
     .extend(cv.polling_component_schema("1s"))
     .extend(spi.spi_device_schema()),
     validate_full_update_every_only_types_ac,
-    validate_reset_pin_required,
     cv.has_at_most_one_key(CONF_PAGES, CONF_LAMBDA),
 )
 
@@ -96,9 +90,12 @@ FINAL_VALIDATE_SCHEMA = spi.final_validate_device_schema(
 )
 
 async def to_code(config):
-    _, model = MODELS[config[CONF_MODEL]]
-    rhs = model.new()
-    var = cg.Pvariable(config[CONF_ID], rhs, model)
+    model_type, model = MODELS[config[CONF_MODEL]]
+    if model_type in ("b", "c"):
+        rhs = model.new()
+        var = cg.Pvariable(config[CONF_ID], rhs, model)
+    else:
+        raise NotImplementedError()
 
     await display.register_display(var, config)
     await spi.register_spi_device(var, config)

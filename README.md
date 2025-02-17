@@ -8,8 +8,9 @@ The following e-paper display models are supported by this component:
 
 - **e0213a09**: 2.13" b/w 104x212 HINK-E0213A07-A1
 - **gdeh029a1**: 2.9" b/w 128x296 Good Display GDEH029A1 / E029A01-FPCA-V2.0
-- **gdem029t94** 2.9" b/w 128x296 Good Display GDEM029T94 / Waveshare 2.9" V2(FPC-7519rev.b)
-- **gdew029t5d** 2.9" b/w 128x296 Good Display GDEW029T5D / WFT0290CZ10 LW
+- **gdem029t94**: 2.9" b/w 128x296 Good Display GDEM029T94 / Waveshare 2.9" V2(FPC-7519rev.b)
+- **gdew029t5d**: 2.9" b/w 128x296 Good Display GDEW029T5D / WFT0290CZ10 LW
+- **gdew042z15**: 4.2" b/w/r 400x300 Good Display GDEW042Z15 / WFT0420CZ15 LW
 
 ## Usage
 ```yaml
