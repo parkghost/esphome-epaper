@@ -35,19 +35,22 @@ namespace esphome
     {
       uint32_t buf_len_half = this->get_buffer_length_() >> 1;
       this->init_display_();
-    
-      unsigned int i;
+
       // Write black Data
       this->command(0x10);
-      for (uint32_t i = 0; i < buf_len_half; i++) {
-        this->data(~this->buffer_[i]);
-      }
+      this->start_data_();
+      this->write_array(this->buffer_, buf_len_half);
+      this->end_data_();
 
       // Write red Data
-      this->command(0x13);
+      unsigned int i;
       for (uint32_t i = buf_len_half; i < buf_len_half * 2u; i++) {
-        this->data(~this->buffer_[i]);
+        this->buffer_[i] = ~this->buffer_[i];
       }
+      this->command(0x13);
+      this->start_data_();
+      this->write_array(this->buffer_ + buf_len_half, buf_len_half);
+      this->end_data_();
 
       this->command(0x12);           // DISPLAY REFRESH
       delay(100);                      //!!!The delay here is necessary, 200uS at least!!!
