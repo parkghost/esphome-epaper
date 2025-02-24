@@ -58,6 +58,7 @@ bool WaveshareEPaperBase::wait_until_idle_() {
       ESP_LOGE(TAG, "Timeout while displaying image!");
       return false;
     }
+    App.feed_wdt();
     delay(1);
   }
   return true;

@@ -7,6 +7,13 @@
 namespace esphome {
 namespace waveshare_epaper {
 
+enum RefreshMode
+{
+  FULL_REFRESH = 0,
+  PARTIAL_REFRESH,
+  FAST_REFRESH,
+};
+
 class WaveshareEPaperBase : public display::DisplayBuffer,
                             public spi::SPIDevice<spi::BIT_ORDER_MSB_FIRST, spi::CLOCK_POLARITY_LOW,
                                                   spi::CLOCK_PHASE_LEADING, spi::DATA_RATE_2MHZ> {
