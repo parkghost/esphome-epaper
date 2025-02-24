@@ -6,12 +6,14 @@ This ESPHome component provides support for various e-paper displays.
 
 The following e-paper display models are supported by this component:
 
-- **e0213a09**: 2.13" b/w 104x212 HINK-E0213A07-A1
-- **gdeh029a1**: 2.9" b/w 128x296 Good Display GDEH029A1 / E029A01-FPCA-V2.0
-- **gdem029t94**: 2.9" b/w 128x296 Good Display GDEM029T94 / Waveshare 2.9" V2(FPC-7519rev.b)
-- **gdew029t5d**: 2.9" b/w 128x296 Good Display GDEW029T5D / WFT0290CZ10 LW
-- **gdew042z15**: 4.2" b/w/r 400x300 Good Display GDEW042Z15 / WFT0420CZ15 LW
-- **p750057-mf1-a**: 7.5" b/w/r 800x480 P750057-MF1-A
+| Model         | Size  | Colors | Resolution | Partial Refresh | Fast Refresh | Tested                            | Useful for                 |
+|---------------|-------|--------|------------|-----------------|--------------|-----------------------------------|----------------------------|
+| e0213a09      | 2.13" | B/W    | 104x212    | Y               | N            | HINK-E0213A07-A1                  |                            |
+| gdeh029a1     | 2.9"  | B/W    | 128x296    | Y               | N            | E029A01-FPCA-V2.0                 | Good Display GDEH029A1     |
+| gdem029t94    | 2.9"  | B/W    | 128x296    | Y               | N            | Waveshare 2.9" V2 (FPC-7519rev.b) | Good Display GDEM029T94    |
+| gdew029t5d    | 2.9"  | B/W    | 128x296    | Y               | N            | WFT0290CZ10 LW                    | Good Display GDEW029T5D    |
+| gdew042z15    | 4.2"  | B/W/R  | 400x300    | N               | N            | WFT0420CZ15 LW                    | Good Display GDEW042Z15    |
+| p750057-mf1-a | 7.5"  | B/W/R  | 800x480    | N               | Y            | P750057-MF1-A                     | Good Display GDEY075Z08    |
 
 ## Usage
 ```yaml
