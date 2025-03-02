@@ -12,7 +12,7 @@ namespace esphome
 
     const char *const E0213A09::TAG = "e0213a09";
 
-    const uint8_t E0213A09::LUT_DATA_FULL[] PROGMEM =
+    const uint8_t E0213A09::LUT_DATA_FULL[] =
         {
             0x80, 0x60, 0x40, 0x00, 0x00, 0x00, 0x00, // LUT0: BB:     VS 0 ~7
             0x10, 0x60, 0x20, 0x00, 0x00, 0x00, 0x00, // LUT1: BW:     VS 0 ~7
@@ -28,7 +28,7 @@ namespace esphome
             0x00, 0x00, 0x00, 0x00, 0x00,             // TP6 A~D RP6
     };
 
-    const uint8_t E0213A09::LUT_DATA_PART[] PROGMEM =
+    const uint8_t E0213A09::LUT_DATA_PART[] =
         {
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // LUT0: BB:     VS 0 ~7
             0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, // LUT1: BW:     VS 0 ~7
@@ -43,8 +43,9 @@ namespace esphome
             0x00, 0x00, 0x00, 0x00, 0x00,             // TP5 A~D RP5
             0x00, 0x00, 0x00, 0x00, 0x00,             // TP6 A~D RP6
     };
-
+#ifdef USE_ESP32
     RTC_DATA_ATTR uint32_t E0213A09::at_update_ = 0;
+#endif
 
     int E0213A09::get_width_internal() { return WIDTH; }
 
@@ -70,6 +71,11 @@ namespace esphome
 
     void E0213A09::initialize()
     {
+#ifdef USE_ESP32
+      esp_reset_reason_t reason = esp_reset_reason();
+      if (reason == ESP_RST_EXT)
+        this->at_update_ = 0;
+#endif
     }
 
     void E0213A09::display()
@@ -80,13 +86,13 @@ namespace esphome
       this->init_display_();
       if (full_update)
       {
-        this->write_lut_(LUT_DATA_FULL, sizeof(LUT_DATA_FULL));
+        this->cmd_data(0x32, LUT_DATA_FULL, sizeof(LUT_DATA_FULL));
       }
       else
       {
         this->command(0x2C); // VCOM Voltage
         this->data(0x26);    // NA ??
-        this->write_lut_(LUT_DATA_PART, sizeof(LUT_DATA_PART));
+        this->cmd_data(0x32, LUT_DATA_PART, sizeof(LUT_DATA_PART));
       }
       this->command(0x22);
       this->data(0xc0);
@@ -195,13 +201,6 @@ namespace esphome
       this->command(0x4f);
       this->data(y % 256);
       this->data(y / 256);
-    }
-
-    void E0213A09::write_lut_(const uint8_t *lut, uint8_t n)
-    {
-      this->command(0x32);
-      for (uint8_t i = 0; i < n; i++)
-        this->data(lut[i]);
     }
 
     void E0213A09::deep_sleep()

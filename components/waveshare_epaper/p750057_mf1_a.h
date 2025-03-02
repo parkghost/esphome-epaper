@@ -42,7 +42,11 @@ namespace esphome
       void reset_();
 
     private:
+#ifdef USE_ESP32
       static uint32_t at_update_;
+#else
+      uint32_t at_update_{0};
+#endif
 
       uint32_t full_update_every_{30};
 

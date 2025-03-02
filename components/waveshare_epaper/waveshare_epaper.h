@@ -27,6 +27,7 @@ class WaveshareEPaperBase : public display::DisplayBuffer,
   void command(uint8_t value);
   void data(uint8_t value);
   void cmd_data(const uint8_t *data, size_t length);
+  void cmd_data(const uint8_t cmd, const uint8_t *data, size_t length);
 
   virtual void display() = 0;
   virtual void initialize() = 0;

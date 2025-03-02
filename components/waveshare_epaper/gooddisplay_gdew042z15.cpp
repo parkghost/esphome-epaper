@@ -44,16 +44,16 @@ namespace esphome
 
       // Write red Data
       unsigned int i;
-      for (uint32_t i = buf_len_half; i < buf_len_half * 2u; i++) {
+      for (uint32_t i = buf_len_half; i < buf_len_half * 2u; i++)
         this->buffer_[i] = ~this->buffer_[i];
-      }
+
       this->command(0x13);
       this->start_data_();
       this->write_array(this->buffer_ + buf_len_half, buf_len_half);
       this->end_data_();
 
       this->command(0x12);           // DISPLAY REFRESH
-      delay(100);                      //!!!The delay here is necessary, 200uS at least!!!
+      delay(100);                    //!!!The delay here is necessary, 200uS at least!!!
       if (!this->wait_until_idle_()) // waiting for the electronic paper IC to release the idle signal
       {
         this->status_set_warning();

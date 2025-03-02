@@ -10,7 +10,7 @@ namespace esphome
   {
     const char *const GDEW029T5D::TAG = "gdew029t5d";
 
-    const uint8_t GDEW029T5D::LUT_VCOM1[] PROGMEM =
+    const uint8_t GDEW029T5D::LUT_VCOM1[] =
         {
             0x02, 0x30, 0x00, 0x00, 0x00, 0x01,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -19,7 +19,7 @@ namespace esphome
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    const uint8_t GDEW029T5D::LUT_WW1[] PROGMEM =
+    const uint8_t GDEW029T5D::LUT_WW1[] =
         {
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -28,7 +28,7 @@ namespace esphome
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    const uint8_t GDEW029T5D::LUT_BW1[] PROGMEM =
+    const uint8_t GDEW029T5D::LUT_BW1[] =
         {
             0x80, 0x30, 0x00, 0x00, 0x00, 0x01, // LOW - GND
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -37,7 +37,7 @@ namespace esphome
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    const uint8_t GDEW029T5D::LUT_WB1[] PROGMEM =
+    const uint8_t GDEW029T5D::LUT_WB1[] =
         {
             0x40, 0x30, 0x00, 0x00, 0x00, 0x01, // HIGH - GND
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -46,7 +46,7 @@ namespace esphome
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-    const uint8_t GDEW029T5D::LUT_BB1[] PROGMEM =
+    const uint8_t GDEW029T5D::LUT_BB1[] =
         {
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -55,10 +55,12 @@ namespace esphome
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
             0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
-            
+
+#ifdef USE_ESP32
     RTC_DATA_ATTR uint32_t GDEW029T5D::at_update_ = 0;
 
     RTC_DATA_ATTR uint8_t GDEW029T5D::oldData[WIDTH * HEIGHT / 8u];
+#endif
 
     int GDEW029T5D::get_width_internal() { return WIDTH; }
 
@@ -84,6 +86,11 @@ namespace esphome
 
     void GDEW029T5D::initialize()
     {
+#ifdef USE_ESP32
+      esp_reset_reason_t reason = esp_reset_reason();
+      if (reason == ESP_RST_EXT)
+        this->at_update_ = 0;
+#endif
     }
 
     void GDEW029T5D::display()
@@ -104,9 +111,11 @@ namespace esphome
         }
 
         this->command(0x13); // Transfer new data
+        this->start_data_();
+        this->write_array(this->buffer_, this->get_buffer_length_());
+        this->end_data_();
         for (i = 0; i < this->get_buffer_length_(); i++)
         {
-          this->data(this->buffer_[i]); // Transfer the actual displayed data
           oldData[i] = this->buffer_[i];
         }
       }
@@ -117,15 +126,16 @@ namespace esphome
         unsigned int i;
         // Write Data
         this->command(0x10); // Transfer old data
-        for (i = 0; i < this->get_buffer_length_(); i++)
-        {
-          this->data(oldData[i]); // Transfer the actual displayed data
-        }
+        this->start_data_();
+        this->write_array(oldData, this->get_buffer_length_());
+        this->end_data_();
 
         this->command(0x13); // Transfer new data
+        this->start_data_();
+        this->write_array(this->buffer_, this->get_buffer_length_());
+        this->end_data_();
         for (i = 0; i < this->get_buffer_length_(); i++)
         {
-          this->data(this->buffer_[i]); // Transfer the actual displayed data
           oldData[i] = this->buffer_[i];
         }
       }
@@ -222,36 +232,11 @@ namespace esphome
 
     void GDEW029T5D::write_lut_()
     {
-      unsigned int count;
-      this->command(0x20);
-      for (count = 0; count < 44; count++)
-      {
-        this->data(LUT_VCOM1[count]);
-      }
-
-      this->command(0x21);
-      for (count = 0; count < 42; count++)
-      {
-        this->data(LUT_WW1[count]);
-      }
-
-      this->command(0x22);
-      for (count = 0; count < 42; count++)
-      {
-        this->data(LUT_BW1[count]);
-      }
-
-      this->command(0x23);
-      for (count = 0; count < 42; count++)
-      {
-        this->data(LUT_WB1[count]);
-      }
-
-      this->command(0x24);
-      for (count = 0; count < 42; count++)
-      {
-        this->data(LUT_BB1[count]);
-      }
+      this->cmd_data(0x20, LUT_VCOM1, sizeof(LUT_VCOM1));
+      this->cmd_data(0x21, LUT_WW1, sizeof(LUT_WW1));
+      this->cmd_data(0x22, LUT_BW1, sizeof(LUT_BW1));
+      this->cmd_data(0x23, LUT_WB1, sizeof(LUT_WB1));
+      this->cmd_data(0x24, LUT_BB1, sizeof(LUT_BB1));
     }
 
     void GDEW029T5D::deep_sleep()

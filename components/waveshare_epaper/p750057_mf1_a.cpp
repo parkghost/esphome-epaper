@@ -11,7 +11,9 @@ namespace esphome
 
     const char *const P750057MF1A::TAG = "p750057-mf1-a";
 
+#ifdef USE_ESP32
     RTC_DATA_ATTR uint32_t P750057MF1A::at_update_ = 0;
+#endif
 
     int P750057MF1A::get_width_internal() { return WIDTH; }
 
@@ -37,6 +39,11 @@ namespace esphome
 
     void P750057MF1A::initialize()
     {
+#ifdef USE_ESP32
+      esp_reset_reason_t reason = esp_reset_reason();
+      if (reason == ESP_RST_EXT)
+        this->at_update_ = 0;
+#endif
     }
 
     void P750057MF1A::display()

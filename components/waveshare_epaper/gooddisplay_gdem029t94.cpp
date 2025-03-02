@@ -11,7 +11,7 @@ namespace esphome
   {
     const char *const GDEM029T94::TAG = "gdem029t94";
 
-    const uint8_t GDEM029T94::LUT_DATA_PART[] PROGMEM =
+    const uint8_t GDEM029T94::LUT_DATA_PART[] =
         {
             0x0, 0x40, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
             0x80, 0x80, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
@@ -32,7 +32,9 @@ namespace esphome
             0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0,
             0x22, 0x22, 0x22, 0x22, 0x22, 0x22, 0x0, 0x0, 0x0};
 
+#ifdef USE_ESP32
     RTC_DATA_ATTR uint32_t GDEM029T94::at_update_ = 0;
+#endif
 
     int GDEM029T94::get_width_internal() { return WIDTH; }
 
@@ -58,6 +60,11 @@ namespace esphome
 
     void GDEM029T94::initialize()
     {
+#ifdef USE_ESP32
+      esp_reset_reason_t reason = esp_reset_reason();
+      if (reason == ESP_RST_EXT)
+        this->at_update_ = 0;
+#endif
     }
 
     void GDEM029T94::display()
@@ -99,7 +106,7 @@ namespace esphome
         this->end_data_();
 
         this->setPartialRamArea_(0, 0, WIDTH, HEIGHT);
-        this->write_lut_(LUT_DATA_PART, sizeof(LUT_DATA_PART));
+        this->cmd_data(0x32, LUT_DATA_PART, sizeof(LUT_DATA_PART));
 
         this->command(0x22);
         this->data(0xcc);
@@ -192,13 +199,6 @@ namespace esphome
       this->command(0x4f);
       this->data(y % 256);
       this->data(y / 256);
-    }
-
-    void GDEM029T94::write_lut_(const uint8_t *lut, uint8_t n)
-    {
-      this->command(0x32);
-      for (uint8_t i = 0; i < n; i++)
-        this->data(lut[i]);
     }
 
     void GDEM029T94::deep_sleep()

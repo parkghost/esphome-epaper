@@ -41,14 +41,16 @@ namespace esphome
 
       void reset_();
 
-      void write_lut_(const uint8_t *lut, uint8_t size);
-
       void setPartialRamArea_(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
 
     private:
       static const uint8_t LUT_DATA_FULL[], LUT_DATA_PART[];
 
+#ifdef USE_ESP32
       static uint32_t at_update_;
+#else
+      uint32_t at_update_{0};
+#endif
 
       uint32_t full_update_every_{30};
 

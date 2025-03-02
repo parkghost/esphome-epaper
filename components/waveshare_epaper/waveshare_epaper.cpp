@@ -47,6 +47,22 @@ void WaveshareEPaperBase::cmd_data(const uint8_t *c_data, size_t length) {
   this->disable();
 }
 
+void WaveshareEPaperBase::cmd_data(const uint8_t cmd, const uint8_t *c_data, size_t length) {
+  this->dc_pin_->digital_write(false);
+  this->enable();
+  this->write_byte(cmd);
+  this->dc_pin_->digital_write(true);
+#ifdef USE_ESP32  
+  this->write_array(c_data, length);
+#else
+  unsigned int i;
+  for (i = 0; i < length; i++)
+    this->data(c_data[i]);
+#endif
+  this->disable();
+}
+
+
 bool WaveshareEPaperBase::wait_until_idle_() {
   if (this->busy_pin_ == nullptr || !this->busy_pin_->digital_read()) {
     return true;
