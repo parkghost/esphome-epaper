@@ -12,6 +12,7 @@ The following e-paper display models are supported by this component:
 | gdeh029a1     | 2.9"  | B/W    | 128x296    | Y               | N            | E029A01-FPCA-V2.0                 | Good Display GDEH029A1     |
 | gdem029t94    | 2.9"  | B/W    | 128x296    | Y               | N            | Waveshare 2.9" V2 (FPC-7519rev.b) | Good Display GDEM029T94    |
 | gdew029t5d    | 2.9"  | B/W    | 128x296    | Y               | N            | WFT0290CZ10 LW                    | Good Display GDEW029T5D    |
+| depg0420      | 4.2"  | B/W/R  | 400x300    | N               | Y            | DEPG0420 (FPC-019)                | Good Display GDEY042Z98    |
 | gdew042z15    | 4.2"  | B/W/R  | 400x300    | N               | N            | WFT0420CZ15 LW                    | Good Display GDEW042Z15    |
 | p750057-mf1-a | 7.5"  | B/W/R  | 800x480    | N               | Y            | P750057-MF1-A                     | Good Display GDEY075Z08    |
 
