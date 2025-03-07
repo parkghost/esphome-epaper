@@ -35,6 +35,8 @@ namespace esphome
 
       int get_height_internal() override;
 
+      bool wait_until_idle_();
+
       uint32_t idle_timeout_() override;
 
       void init_display_(RefreshMode mode);
