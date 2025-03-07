@@ -38,6 +38,9 @@ GDEM029T94 = waveshare_epaper_ns.class_(
 GDEW029T5D = waveshare_epaper_ns.class_(
     "GDEW029T5D", WaveshareEPaper
 )
+GDEY029Z95 = waveshare_epaper_ns.class_(
+    "GDEY029Z95", WaveshareEPaper
+)
 DEPG0420 = waveshare_epaper_ns.class_(
     "DEPG0420", WaveshareEPaper
 )
@@ -54,6 +57,7 @@ MODELS = {
     "gdeh029a1": ("c", GDEH029A1), # GDEH029A1  2.9" 296x128, SSD1608 (IL3820), (E029A01-FPC-A1 SYX1553)
     "gdem029t94": ("c", GDEM029T94), # GDEM029T94  2.9" 296x128, SSD1680, (FPC-7519 rev.b), Waveshare 2.9" V2 variant
     "gdew029t5d": ("c", GDEW029T5D), # GDEW029T5D  2.9" 296x128, UC8151D (IL0373F), (WFT0290CZ10 LW)
+    "gdey029z95": ("c", GDEY029Z95), # GDEY029Z95  2.9" 296x128, SSD1680, (FPC-A005 20.06.15 TRX)
     "depg0420": ("c", DEPG0420), # DEPG0420  4.2" 400x300, SSD1683, (FPC-190)
     "gdew042z15": ("b", GDEW042Z15), # GDEW042Z15  4.2" 400x300, UC8176 (IL0398), (WFT0420CZ15 LW)
     "p750057-mf1-a": ("c", P750057MF1A), # P750057-MF1-A  7.5" 800x480, UC8179
