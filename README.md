@@ -15,6 +15,7 @@ The following e-paper display models are supported by this component:
 | gdey029z95    | 2.9"  | B/W/R  | 296x128    | N               | Y            | FPC-A005 20.06.15 TRX             | Good Display GDEY029Z95    |
 | depg0420      | 4.2"  | B/W/R  | 400x300    | N               | Y            | DEPG0420 (FPC-019)                | Good Display GDEY042Z98    |
 | gdew042z15    | 4.2"  | B/W/R  | 400x300    | N               | N            | WFT0420CZ15 LW                    | Good Display GDEW042Z15    |
+| gdey075t7     | 7.5"  | B/W    | 800x480    | Y               | Y            | GDEY075T7 (FPC-C001 21.08.30 HB)  | Good Display GDEY075T7     |
 | p750057-mf1-a | 7.5"  | B/W/R  | 800x480    | N               | Y            | P750057-MF1-A                     | Good Display GDEY075Z08    |
 
 ## Usage
