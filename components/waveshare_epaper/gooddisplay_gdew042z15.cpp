@@ -43,13 +43,11 @@ namespace esphome
       this->end_data_();
 
       // Write red Data
-      unsigned int i;
-      for (uint32_t i = buf_len_half; i < buf_len_half * 2u; i++)
-        this->buffer_[i] = ~this->buffer_[i];
-
       this->command(0x13);
       this->start_data_();
-      this->write_array(this->buffer_ + buf_len_half, buf_len_half);
+      unsigned int i;
+      for (uint32_t i = buf_len_half; i < buf_len_half * 2u; i++)
+        this->write_byte(~this->buffer_[i]);
       this->end_data_();
 
       this->command(0x12);           // DISPLAY REFRESH
@@ -105,15 +103,15 @@ namespace esphome
       if (hibernating_)
         return;
 
-      this->command(0X50); // VCOM AND DATA INTERVAL SETTING
+      this->command(0x50); // VCOM AND DATA INTERVAL SETTING
       this->data(0xf7);    // WBmode:VBDF 17|D7 VBDW 97 VBDB 57    WBRmode:VBDF F7 VBDW 77 VBDB 37  VBDR B7
 
-      this->command(0X02);           // power off
+      this->command(0x02);           // power off
       if (!this->wait_until_idle_()) // waiting for the electronic paper IC to release the idle signal
         return;
 
       // delay(100);          //!!!The delay here is necessary,100mS at least!!!
-      this->command(0X07); // deep sleep
+      this->command(0x07); // deep sleep
       this->data(0xA5);
       hibernating_ = true;
     }

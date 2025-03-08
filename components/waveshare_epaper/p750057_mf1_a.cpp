@@ -123,7 +123,7 @@ namespace esphome
         this->command(0x04);      // POWER ON
         this->wait_until_idle_(); // waiting for the electronic paper IC to release the idle signal
 
-        this->command(0X00); // PANNEL SETTING
+        this->command(0x00); // PANNEL SETTING
         this->data(0x0F);    // KW-3f   KWR-2F	BWROTP 0f	BWOTP 1f
 
         this->command(0x61); // resolution setting
@@ -132,20 +132,20 @@ namespace esphome
         this->data(HEIGHT / 256);
         this->data(HEIGHT % 256);
 
-        this->command(0X15);
+        this->command(0x15);
         this->data(0x00);
 
-        this->command(0X50); // VCOM AND DATA INTERVAL SETTING
+        this->command(0x50); // VCOM AND DATA INTERVAL SETTING
         this->data(0x11);    // 0x10  --------------
         this->data(0x07);
 
-        this->command(0X60); // TCON SETTING
+        this->command(0x60); // TCON SETTING
         this->data(0x22);
       }
       else if (mode == FAST_REFRESH)
       {
 
-        this->command(0X00); // PANNEL SETTING
+        this->command(0x00); // PANNEL SETTING
         this->data(0x0F);    // KW-3f   KWR-2F	BWROTP 0f	BWOTP 1f
 
         this->command(0x04); // POWER ON
@@ -164,7 +164,7 @@ namespace esphome
         this->command(0xE5);
         this->data(0x5A);
 
-        this->command(0X50); // VCOM AND DATA INTERVAL SETTING
+        this->command(0x50); // VCOM AND DATA INTERVAL SETTING
         this->data(0x11);
         this->data(0x07);
       }
@@ -188,15 +188,15 @@ namespace esphome
       if (hibernating_)
         return;
 
-      this->command(0X50); // VCOM AND DATA INTERVAL SETTING
+      this->command(0x50); // VCOM AND DATA INTERVAL SETTING
       this->data(0xf7);    // WBmode:VBDF 17|D7 VBDW 97 VBDB 57    WBRmode:VBDF F7 VBDW 77 VBDB 37  VBDR B7
 
-      this->command(0X02);           // power off
+      this->command(0x02);           // power off
       if (!this->wait_until_idle_()) // waiting for the electronic paper IC to release the idle signal
         return;
 
       // delay(100);          //!!!The delay here is necessary,100mS at least!!!
-      this->command(0X07); // deep sleep
+      this->command(0x07); // deep sleep
       this->data(0xA5);
       hibernating_ = true;
     }
