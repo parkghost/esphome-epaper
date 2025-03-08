@@ -6,17 +6,17 @@ This ESPHome component provides support for various e-paper displays.
 
 The following e-paper display models are supported by this component:
 
-| Model         | Size  | Colors | Resolution | Partial Refresh | Fast Refresh | Tested                            | Useful for                 |
-|---------------|-------|--------|------------|-----------------|--------------|-----------------------------------|----------------------------|
-| e0213a09      | 2.13" | B/W    | 212x104    | Y               | N            | HINK-E0213A07-A1                  |                            |
-| gdeh029a1     | 2.9"  | B/W    | 296x128    | Y               | N            | E029A01-FPCA-V2.0                 | Good Display GDEH029A1     |
-| gdem029t94    | 2.9"  | B/W    | 296x128    | Y               | N            | Waveshare 2.9" V2 (FPC-7519rev.b) | Good Display GDEM029T94    |
-| gdew029t5d    | 2.9"  | B/W    | 296x128    | Y               | N            | WFT0290CZ10 LW / WFT0290CZ10 LP   | Good Display GDEW029T5D    |
-| gdey029z95    | 2.9"  | B/W/R  | 296x128    | N               | Y            | FPC-A005 20.06.15 TRX             | Good Display GDEY029Z95    |
-| depg0420      | 4.2"  | B/W/R  | 400x300    | N               | Y            | DEPG0420 (FPC-019)                | Good Display GDEY042Z98    |
-| gdew042z15    | 4.2"  | B/W/R  | 400x300    | N               | N            | WFT0420CZ15 LW                    | Good Display GDEW042Z15    |
-| gdey075t7     | 7.5"  | B/W    | 800x480    | Y               | Y            | GDEY075T7 (FPC-C001 21.08.30 HB)  | Good Display GDEY075T7     |
-| p750057-mf1-a | 7.5"  | B/W/R  | 800x480    | N               | Y            | P750057-MF1-A                     | Good Display GDEY075Z08    |
+| Model         | Size  | Colors | Resolution | Partial Refresh | Fast Refresh | Tested                                        | Useful for                 |
+|---------------|-------|--------|------------|-----------------|--------------|-----------------------------------------------|----------------------------|
+| e0213a09      | 2.13" | B/W    | 212x104    | Y               | N            | E213A09N(HINK-E0213A07-A1)                    |                            |
+| gdeh029a1     | 2.9"  | B/W    | 296x128    | Y               | N            | E029A01(E029A01-FPCA-V2.0) / (EO29A01-FPC-A1) | Good Display GDEH029A1     |
+| gdem029t94    | 2.9"  | B/W    | 296x128    | Y               | N            | Waveshare 2.9" SKU-12563 (FPC-7519rev.b)      | Good Display GDEM029T94    |
+| gdew029t5d    | 2.9"  | B/W    | 296x128    | Y               | N            | WF0290T5(WFT0290CZ10 LW) / (WFT0290CZ10 LP)   | Good Display GDEW029T5D    |
+| gdey029z95    | 2.9"  | B/W/R  | 296x128    | N               | Y            | (FPC-A005 20.06.15 TRX)                       | Good Display GDEY029Z95    |
+| depg0420      | 4.2"  | B/W/R  | 400x300    | N               | Y            | DEPG0420(FPC-019)                             | Good Display GDEY042Z98    |
+| gdew042z15    | 4.2"  | B/W/R  | 400x300    | N               | N            | WF0420T80CZ15(WFT0420CZ15 LW)                 | Good Display GDEW042Z15    |
+| gdey075t7     | 7.5"  | B/W    | 800x480    | Y               | Y            | GDEY075T7(FPC-C001 21.08.30 HB)               | Good Display GDEY075T7     |
+| p750057-mf1-a | 7.5"  | B/W/R  | 800x480    | N               | Y            | (P750057-MF1-A)                               | Good Display GDEY075Z08    |
 
 ## Usage
 ```yaml
