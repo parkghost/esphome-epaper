@@ -52,7 +52,7 @@ void WaveshareEPaperBase::cmd_data(const uint8_t cmd, const uint8_t *c_data, siz
   this->enable();
   this->write_byte(cmd);
   this->dc_pin_->digital_write(true);
-#ifdef USE_ESP32  
+#ifdef USE_ESP32
   this->write_array(c_data, length);
 #else
   unsigned int i;

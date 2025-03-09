@@ -25,7 +25,7 @@ namespace esphome
       if (this->busy_pin_ == nullptr || this->busy_pin_->digital_read()) {
         return true;
       }
-    
+
       const uint32_t start = millis();
       while (!this->busy_pin_->digital_read()) {
         if (millis() - start > this->idle_timeout_()) {

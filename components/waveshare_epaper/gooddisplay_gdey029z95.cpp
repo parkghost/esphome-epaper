@@ -92,7 +92,7 @@ namespace esphome
         this->command(0x20); // Master Activation
 
       default:
-        ESP_LOGW(TAG, "unsupported refresh mode, mode:%d", mode);
+        ESP_LOGE(TAG, "unsupported refresh mode, mode:%d", mode);
         break;
       }
 
