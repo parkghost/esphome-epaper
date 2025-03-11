@@ -58,7 +58,7 @@ namespace esphome
 
     void GDEY075T7::display()
     {
-      RefreshMode mode = this->at_update_ == 0 ? FULL_REFRESH : PARTIAL_REFRESH;
+      RefreshMode mode = this->at_update_ == 0 ? FAST_REFRESH : PARTIAL_REFRESH;
       this->at_update_ = (this->at_update_ + 1) % this->full_update_every_;
 
       this->init_display_(mode);
@@ -106,18 +106,15 @@ namespace esphome
 
         this->command(0x10);
         this->start_data_();
-        for (i = 0; i < this->get_buffer_length_(); i++)
-          this->write_byte(oldData_[i]);
+        this->write_array(this->oldData_, this->get_buffer_length_());
         this->end_data_();
 
         this->command(0x13); // writes New data to SRAM.
         this->start_data_();
-        for (i = 0; i < this->get_buffer_length_(); i++)
-        {
-          this->write_byte(this->buffer_[i]);
-          oldData_[i] = this->buffer_[i];
-        }
+        this->write_array(this->buffer_, this->get_buffer_length_());
         this->end_data_();
+        for (i = 0; i < this->get_buffer_length_(); i++)
+          oldData_[i] = this->buffer_[i];
         break;
 
       default:
@@ -144,8 +141,7 @@ namespace esphome
     // Fast update 1 initialization
     void GDEY075T7::init_display_(RefreshMode mode)
     {
-      if (hibernating_)
-        reset_(); // Electronic paper IC reset
+      reset_(); // Electronic paper IC reset
 
       this->wait_until_idle_();
 
