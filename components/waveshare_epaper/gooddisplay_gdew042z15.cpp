@@ -65,6 +65,12 @@ namespace esphome
 
     void GDEW042Z15::init_display_()
     {
+      if (!initial_)
+      {
+        reset_();
+        initial_ = true;
+      }
+
       if (hibernating_)
         reset_(); // Electronic paper IC reset
 

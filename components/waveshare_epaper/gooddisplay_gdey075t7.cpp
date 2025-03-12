@@ -141,7 +141,14 @@ namespace esphome
     // Fast update 1 initialization
     void GDEY075T7::init_display_(RefreshMode mode)
     {
-      reset_(); // Electronic paper IC reset
+      if (!initial_)
+      {
+        reset_();
+        initial_ = true;
+      }
+
+      if (hibernating_)
+        reset_();
 
       this->wait_until_idle_();
 

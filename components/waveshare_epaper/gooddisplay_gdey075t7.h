@@ -48,7 +48,7 @@ namespace esphome
 
       uint32_t at_update_{0}, full_update_every_{30};
 
-      bool hibernating_{false};
+      bool initial_{false}, hibernating_{false};
     };
 
   } // namespace waveshare_epaper

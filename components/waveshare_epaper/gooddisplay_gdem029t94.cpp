@@ -138,6 +138,12 @@ namespace esphome
 
     void GDEM029T94::init_display_()
     {
+      if (!initial_)
+      {
+        reset_();
+        initial_ = true;
+      }
+
       if (hibernating_)
         reset_();
 

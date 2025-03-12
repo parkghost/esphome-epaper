@@ -21,14 +21,18 @@ namespace esphome
 
     int P750057MF1A::get_height_internal() { return HEIGHT; }
 
-    bool P750057MF1A::wait_until_idle_() {
-      if (this->busy_pin_ == nullptr || this->busy_pin_->digital_read()) {
+    bool P750057MF1A::wait_until_idle_()
+    {
+      if (this->busy_pin_ == nullptr || this->busy_pin_->digital_read())
+      {
         return true;
       }
 
       const uint32_t start = millis();
-      while (!this->busy_pin_->digital_read()) {
-        if (millis() - start > this->idle_timeout_()) {
+      while (!this->busy_pin_->digital_read())
+      {
+        if (millis() - start > this->idle_timeout_())
+        {
           ESP_LOGE(TAG, "Timeout while displaying image!");
           return false;
         }
@@ -100,6 +104,12 @@ namespace esphome
     // Fast update 1 initialization
     void P750057MF1A::init_display_(RefreshMode mode)
     {
+      if (!initial_)
+      {
+        reset_();
+        initial_ = true;
+      }
+
       if (hibernating_)
         reset_(); // Electronic paper IC reset
 

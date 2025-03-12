@@ -149,6 +149,12 @@ namespace esphome
 
     void GDEW029T5D::init_display_()
     {
+      if (!initial_)
+      {
+        reset_();
+        initial_ = true;
+      }
+
       if (hibernating_)
         reset_();
 
