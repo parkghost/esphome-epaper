@@ -77,12 +77,6 @@ namespace esphome
       if (full_update)
       {
 
-        this->command(0x26);
-        this->start_data_();
-        this->write_array(this->buffer_, this->get_buffer_length_());
-        this->end_data_();
-
-        this->setPartialRamArea_(0, 0, WIDTH, HEIGHT);
         this->command(0x24);
         this->start_data_();
         this->write_array(this->buffer_, this->get_buffer_length_());
@@ -96,16 +90,19 @@ namespace esphome
           this->status_set_warning();
           return;
         }
+
+        this->command(0x26);
+        this->start_data_();
+        this->write_array(this->buffer_, this->get_buffer_length_());
+        this->end_data_();
       }
       else
       {
-        this->setPartialRamArea_(0, 0, WIDTH, HEIGHT);
         this->command(0x24);
         this->start_data_();
         this->write_array(this->buffer_, this->get_buffer_length_());
         this->end_data_();
 
-        this->setPartialRamArea_(0, 0, WIDTH, HEIGHT);
         this->cmd_data(0x32, LUT_DATA_PART, sizeof(LUT_DATA_PART));
 
         this->command(0x22);
@@ -118,14 +115,7 @@ namespace esphome
           return;
         }
 
-        this->setPartialRamArea_(0, 0, WIDTH, HEIGHT);
         this->command(0x26);
-        this->start_data_();
-        this->write_array(this->buffer_, this->get_buffer_length_());
-        this->end_data_();
-
-        this->setPartialRamArea_(0, 0, WIDTH, HEIGHT);
-        this->command(0x24);
         this->start_data_();
         this->write_array(this->buffer_, this->get_buffer_length_());
         this->end_data_();
