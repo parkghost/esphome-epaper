@@ -41,6 +41,9 @@ GDEW029T5D = waveshare_epaper_ns.class_(
 GDEY029Z95 = waveshare_epaper_ns.class_(
     "GDEY029Z95", WaveshareEPaper
 )
+GDEW042M01 = waveshare_epaper_ns.class_(
+    "GDEW042M01", WaveshareEPaper
+)
 DEPG0420 = waveshare_epaper_ns.class_(
     "DEPG0420", WaveshareEPaper
 )
@@ -61,6 +64,7 @@ MODELS = {
     "gdem029t94": ("c", GDEM029T94),
     "gdew029t5d": ("c", GDEW029T5D),
     "gdey029z95": ("c", GDEY029Z95),
+    "gdew042m01": ("c", GDEW042M01),
     "depg0420": ("c", DEPG0420),
     "gdew042z15": ("b", GDEW042Z15),
     "gdey075t7": ("c", GDEY075T7),

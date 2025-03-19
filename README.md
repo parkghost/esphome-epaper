@@ -13,6 +13,7 @@ The following e-paper display models are supported by this component:
 | gdem029t94    | 2.9"  | B/W    | 296x128    | Y               | N            | Waveshare 2.9" SKU-12563 (FPC-7519rev.b)      | Good Display GDEM029T94    | SSD1680           |
 | gdew029t5d    | 2.9"  | B/W    | 296x128    | Y               | N            | WF0290T5(WFT0290CZ10 LW) / (WFT0290CZ10 LP)   | Good Display GDEW029T5D    | UC8151D           |
 | gdey029z95    | 2.9"  | B/W/R  | 296x128    | N               | Y            | (FPC-A005 20.06.15 TRX)                       | Good Display GDEY029Z95    | SSD1680           |
+| gdew042m01    | 4.2"  | B/W    | 400x300    | Y               | N            | WF0420T80CZ35230H(WF0420CZ35 LW)              | Good Display GDEW042M01    | UC8176(IL0398)    |
 | depg0420      | 4.2"  | B/W/R  | 400x300    | N               | Y            | DEPG0420(FPC-190)                             | Good Display GDEY042Z98    | SSD1683           |
 | gdew042z15    | 4.2"  | B/W/R  | 400x300    | N               | N            | WF0420T80CZ15(WFT0420CZ15 LW)                 | Good Display GDEW042Z15    | UC8176(IL0398)    |
 | gdey075t7     | 7.5"  | B/W    | 800x480    | Y               | Y            | GDEY075T7(FPC-C001 21.08.30 HB)               | Good Display GDEY075T7     | UC8179            |
