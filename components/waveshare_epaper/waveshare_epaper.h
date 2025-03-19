@@ -1,28 +1,30 @@
 #pragma once
 
-#include "esphome/core/component.h"
-#include "esphome/components/spi/spi.h"
 #include "esphome/components/display/display_buffer.h"
+#include "esphome/components/spi/spi.h"
+#include "esphome/core/component.h"
 
 namespace esphome {
 namespace waveshare_epaper {
 
-enum RefreshMode
-{
+enum RefreshMode {
   FULL_REFRESH = 0,
   PARTIAL_REFRESH,
   FAST_REFRESH,
 };
 
-class WaveshareEPaperBase : public display::DisplayBuffer,
-                            public spi::SPIDevice<spi::BIT_ORDER_MSB_FIRST, spi::CLOCK_POLARITY_LOW,
-                                                  spi::CLOCK_PHASE_LEADING, spi::DATA_RATE_2MHZ> {
+class WaveshareEPaperBase
+    : public display::DisplayBuffer,
+      public spi::SPIDevice<spi::BIT_ORDER_MSB_FIRST, spi::CLOCK_POLARITY_LOW,
+                            spi::CLOCK_PHASE_LEADING, spi::DATA_RATE_2MHZ> {
  public:
   void set_dc_pin(GPIOPin *dc_pin) { dc_pin_ = dc_pin; }
   float get_setup_priority() const override;
   void set_reset_pin(GPIOPin *reset) { this->reset_pin_ = reset; }
   void set_busy_pin(GPIOPin *busy) { this->busy_pin_ = busy; }
-  void set_reset_duration(uint32_t reset_duration) { this->reset_duration_ = reset_duration; }
+  void set_reset_duration(uint32_t reset_duration) {
+    this->reset_duration_ = reset_duration;
+  }
 
   void command(uint8_t value);
   void data(uint8_t value);
@@ -60,7 +62,8 @@ class WaveshareEPaperBase : public display::DisplayBuffer,
 
   virtual int get_width_controller() { return this->get_width_internal(); };
 
-  virtual uint32_t get_buffer_length_() = 0;  // NOLINT(readability-identifier-naming)
+  virtual uint32_t
+  get_buffer_length_() = 0;  // NOLINT(readability-identifier-naming)
   uint32_t reset_duration_{200};
 
   void start_command_();
@@ -71,14 +74,18 @@ class WaveshareEPaperBase : public display::DisplayBuffer,
   GPIOPin *reset_pin_{nullptr};
   GPIOPin *dc_pin_;
   GPIOPin *busy_pin_{nullptr};
-  virtual uint32_t idle_timeout_() { return 1000u; }  // NOLINT(readability-identifier-naming)
+  virtual uint32_t idle_timeout_() {
+    return 1000u;
+  }  // NOLINT(readability-identifier-naming)
 };
 
 class WaveshareEPaper : public WaveshareEPaperBase {
  public:
   void fill(Color color) override;
 
-  display::DisplayType get_display_type() override { return display::DisplayType::DISPLAY_TYPE_BINARY; }
+  display::DisplayType get_display_type() override {
+    return display::DisplayType::DISPLAY_TYPE_BINARY;
+  }
 
  protected:
   void draw_absolute_pixel_internal(int x, int y, Color color) override;
@@ -89,7 +96,9 @@ class WaveshareEPaperBWR : public WaveshareEPaperBase {
  public:
   void fill(Color color) override;
 
-  display::DisplayType get_display_type() override { return display::DisplayType::DISPLAY_TYPE_COLOR; }
+  display::DisplayType get_display_type() override {
+    return display::DisplayType::DISPLAY_TYPE_COLOR;
+  }
 
  protected:
   void draw_absolute_pixel_internal(int x, int y, Color color) override;
