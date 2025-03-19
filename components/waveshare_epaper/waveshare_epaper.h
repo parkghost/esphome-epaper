@@ -45,6 +45,8 @@ class WaveshareEPaperBase : public display::DisplayBuffer,
  protected:
   bool wait_until_idle_();
 
+  virtual bool is_busy_pin_inverted_() { return false; }
+
   void setup_pins_();
 
   void reset_() {

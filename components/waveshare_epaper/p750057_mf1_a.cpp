@@ -21,27 +21,6 @@ namespace esphome
 
     int P750057MF1A::get_height_internal() { return HEIGHT; }
 
-    bool P750057MF1A::wait_until_idle_()
-    {
-      if (this->busy_pin_ == nullptr || this->busy_pin_->digital_read())
-      {
-        return true;
-      }
-
-      const uint32_t start = millis();
-      while (!this->busy_pin_->digital_read())
-      {
-        if (millis() - start > this->idle_timeout_())
-        {
-          ESP_LOGE(TAG, "Timeout while displaying image!");
-          return false;
-        }
-        App.feed_wdt();
-        delay(1);
-      }
-      return true;
-    }
-
     uint32_t P750057MF1A::idle_timeout_()
     {
       return IDLE_TIMEOUT;

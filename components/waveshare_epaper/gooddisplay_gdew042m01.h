@@ -14,7 +14,7 @@ namespace esphome
 
       static const uint16_t HEIGHT = 300;
 
-      static const uint16_t IDLE_TIMEOUT = 26000;
+      static const uint16_t IDLE_TIMEOUT = 40000;
 
       void initialize() override;
 
@@ -35,9 +35,9 @@ namespace esphome
 
       int get_height_internal() override;
 
-      bool wait_until_idle_();
-
       uint32_t idle_timeout_() override;
+
+      bool is_busy_pin_inverted_() override { return true; }      
 
       void init_display_();
 

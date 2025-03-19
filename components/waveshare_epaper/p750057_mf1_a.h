@@ -35,15 +35,14 @@ namespace esphome
 
       int get_height_internal() override;
 
-      bool wait_until_idle_();
-
       uint32_t idle_timeout_() override;
+
+      bool is_busy_pin_inverted_() override { return true; }
 
       void init_display_(RefreshMode mode);
 
       void reset_();
 
-    private:
 #ifdef USE_ESP32
       static uint32_t at_update_;
 #else

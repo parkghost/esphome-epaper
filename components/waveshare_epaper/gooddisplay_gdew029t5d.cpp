@@ -187,6 +187,7 @@ namespace esphome
           this->reset_pin_->digital_write(true);
           delay(10);
         }
+        this->wait_until_idle_();
       }
 
       hibernating_ = false;

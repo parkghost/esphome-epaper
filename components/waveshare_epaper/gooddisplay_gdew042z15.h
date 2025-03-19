@@ -35,6 +35,8 @@ namespace esphome
 
       uint32_t idle_timeout_() override;
 
+      bool is_busy_pin_inverted_() override { return true; }
+
       void init_display_();
 
       void reset_();

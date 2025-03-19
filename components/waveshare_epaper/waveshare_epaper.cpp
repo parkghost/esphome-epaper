@@ -64,12 +64,16 @@ void WaveshareEPaperBase::cmd_data(const uint8_t cmd, const uint8_t *c_data, siz
 
 
 bool WaveshareEPaperBase::wait_until_idle_() {
-  if (this->busy_pin_ == nullptr || !this->busy_pin_->digital_read()) {
+  auto is_busy = [this]() -> bool {
+    return this->is_busy_pin_inverted_() ? !this->busy_pin_->digital_read() : this->busy_pin_->digital_read();
+  };
+
+  if (this->busy_pin_ == nullptr || !is_busy()) {
     return true;
   }
 
   const uint32_t start = millis();
-  while (this->busy_pin_->digital_read()) {
+  while (is_busy()) {
     if (millis() - start > this->idle_timeout_()) {
       ESP_LOGE(TAG, "Timeout while displaying image!");
       return false;
@@ -79,6 +83,7 @@ bool WaveshareEPaperBase::wait_until_idle_() {
   }
   return true;
 }
+
 void WaveshareEPaperBase::update() {
   this->do_update_();
   this->display();

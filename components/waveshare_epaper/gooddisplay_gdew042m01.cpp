@@ -74,27 +74,6 @@ namespace esphome
 
     int GDEW042M01::get_height_internal() { return HEIGHT; }
 
-    bool GDEW042M01::wait_until_idle_()
-    {
-      if (this->busy_pin_ == nullptr || this->busy_pin_->digital_read())
-      {
-        return true;
-      }
-
-      const uint32_t start = millis();
-      while (!this->busy_pin_->digital_read())
-      {
-        if (millis() - start > this->idle_timeout_())
-        {
-          ESP_LOGE(TAG, "Timeout while displaying image!");
-          return false;
-        }
-        App.feed_wdt();
-        delay(1);
-      }
-      return true;
-    }
-
     uint32_t GDEW042M01::idle_timeout_()
     {
       return IDLE_TIMEOUT;
