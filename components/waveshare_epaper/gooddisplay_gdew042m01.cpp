@@ -223,29 +223,28 @@ void GDEW042M01::init_part_() {
 }
 
 void GDEW042M01::write_lut_() {
-  unsigned int count;
   this->command(0x20);
-  for (count = 0; count < 44; count++) {
+  for (uint8_t count = 0; count < 44; count++) {
     this->data(LUT_VCOM1_PARTIAL[count]);
   }
 
   this->command(0x21);
-  for (count = 0; count < 42; count++) {
+  for (uint8_t count = 0; count < 42; count++) {
     this->data(LUT_WW1_PARTIAL[count]);
   }
 
   this->command(0x22);
-  for (count = 0; count < 42; count++) {
+  for (uint8_t count = 0; count < 42; count++) {
     this->data(LUT_BW1_PARTIAL[count]);
   }
 
   this->command(0x23);
-  for (count = 0; count < 42; count++) {
+  for (uint8_t count = 0; count < 42; count++) {
     this->data(LUT_WB1_PARTIAL[count]);
   }
 
   this->command(0x24);
-  for (count = 0; count < 42; count++) {
+  for (uint8_t count = 0; count < 42; count++) {
     this->data(LUT_BB1_PARTIAL[count]);
   }
 }

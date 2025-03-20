@@ -38,17 +38,15 @@ void GDEY075T7::display() {
     case FULL_REFRESH:
     case FAST_REFRESH:
       // Write old Data
-      unsigned int i;
-
       this->command(0x10);
       this->start_data_();
-      for (i = 0; i < this->get_buffer_length_(); i++) this->write_byte(0x00);
+      for (uint32_t i = 0; i < this->get_buffer_length_(); i++) this->write_byte(0x00);
       this->end_data_();
 
       // Write new Data
       this->command(0x13);
       this->start_data_();
-      for (i = 0; i < this->get_buffer_length_(); i++) {
+      for (uint32_t i = 0; i < this->get_buffer_length_(); i++) {
         this->write_byte(~this->buffer_[i]);
         oldData_[i] = this->buffer_[i];
       }
@@ -81,7 +79,7 @@ void GDEY075T7::display() {
       this->start_data_();
       this->write_array(this->buffer_, this->get_buffer_length_());
       this->end_data_();
-      for (i = 0; i < this->get_buffer_length_(); i++)
+      for (uint32_t i = 0; i < this->get_buffer_length_(); i++)
         oldData_[i] = this->buffer_[i];
       break;
 

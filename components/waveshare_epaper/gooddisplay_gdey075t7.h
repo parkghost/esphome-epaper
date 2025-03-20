@@ -40,7 +40,6 @@ class GDEY075T7 : public WaveshareEPaper {
 
   void reset_();
 
- private:
   uint8_t oldData_[WIDTH * HEIGHT / 8];
 
   uint32_t at_update_{0}, full_update_every_{30};

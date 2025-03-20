@@ -44,7 +44,6 @@ class GDEW029T5D : public WaveshareEPaper {
 
   void write_lut_();
 
- private:
   static const uint8_t LUT_VCOM1[], LUT_WW1[], LUT_BW1[], LUT_WB1[], LUT_BB1[];
 
 #ifdef USE_ESP32

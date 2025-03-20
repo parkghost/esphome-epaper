@@ -38,7 +38,6 @@ class DEPG0420 : public WaveshareEPaperBWR {
 
   void init_display_();
 
- private:
 #ifdef USE_ESP32
   static uint32_t at_update_;
 #else

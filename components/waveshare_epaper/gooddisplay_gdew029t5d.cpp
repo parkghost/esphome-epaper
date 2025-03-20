@@ -73,22 +73,20 @@ void GDEW029T5D::display() {
   this->init_display_();
 
   if (full_update) {
-    unsigned int i;
     // Write Data
     this->command(0x10);  // Transfer old data
-    for (i = 0; i < this->get_buffer_length_(); i++)
+    for (uint32_t i = 0; i < this->get_buffer_length_(); i++)
       this->data(0xFF);  // Transfer the actual displayed data
 
     this->command(0x13);  // Transfer new data
     this->start_data_();
     this->write_array(this->buffer_, this->get_buffer_length_());
     this->end_data_();
-    for (i = 0; i < this->get_buffer_length_(); i++)
+    for (uint32_t i = 0; i < this->get_buffer_length_(); i++)
       oldData[i] = this->buffer_[i];
   } else {
     this->init_part_();
 
-    unsigned int i;
     // Write Data
     this->command(0x10);  // Transfer old data
     this->start_data_();
@@ -99,7 +97,7 @@ void GDEW029T5D::display() {
     this->start_data_();
     this->write_array(this->buffer_, this->get_buffer_length_());
     this->end_data_();
-    for (i = 0; i < this->get_buffer_length_(); i++)
+    for (uint32_t i = 0; i < this->get_buffer_length_(); i++)
       oldData[i] = this->buffer_[i];
   }
 
@@ -146,8 +144,7 @@ void GDEW029T5D::init_display_() {
 
 void GDEW029T5D::reset_() {
   if (this->reset_pin_ != nullptr) {
-    int i;
-    for (i = 0; i < 3; i++) {
+    for (uint32_t i = 0; i < 3; i++) {
       this->reset_pin_->digital_write(false);
       delay(10);
       this->reset_pin_->digital_write(true);

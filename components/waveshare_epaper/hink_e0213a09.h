@@ -40,7 +40,6 @@ class E0213A09 : public WaveshareEPaper {
 
   void setPartialRamArea_(uint16_t x, uint16_t y, uint16_t w, uint16_t h);
 
- private:
   static const uint8_t LUT_DATA_FULL[], LUT_DATA_PART[];
 
 #ifdef USE_ESP32

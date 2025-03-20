@@ -36,7 +36,6 @@ void GDEW042Z15::display() {
   // Write red Data
   this->command(0x13);
   this->start_data_();
-  unsigned int i;
   for (uint32_t i = buf_len_half; i < buf_len_half * 2u; i++)
     this->write_byte(~this->buffer_[i]);
   this->end_data_();

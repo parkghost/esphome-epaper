@@ -38,7 +38,6 @@ class GDEY029Z95 : public WaveshareEPaperBWR {
 
   void reset_();
 
- private:
 #ifdef USE_ESP32
   static uint32_t at_update_;
 #else
