@@ -5,7 +5,7 @@
 #include "esphome/core/log.h"
 
 // Reference:
-// https://github.com/gooddisplayshare/ESP32epdx/tree/main/examples/3-Colors%20(BWR)/7.5/P750057MF1A
+// https://github.com/gooddisplayshare/ESP32epdx/tree/main/examples/3-Colors%20(BWR)/7.5/GDEY075Z08
 
 namespace esphome {
 namespace waveshare_epaper {
