@@ -11,7 +11,7 @@ class GDEW042Z15 : public WaveshareEPaperBWR {
 
   static const uint16_t HEIGHT = 300;
 
-  static const uint16_t IDLE_TIMEOUT = 16000;
+  static const uint16_t IDLE_TIMEOUT = 45000;
 
   void initialize() override;
 
@@ -25,8 +25,6 @@ class GDEW042Z15 : public WaveshareEPaperBWR {
 
  protected:
   int get_width_internal() override;
-
-  int get_width_controller() override;
 
   int get_height_internal() override;
 

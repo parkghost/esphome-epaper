@@ -44,8 +44,6 @@ RTC_DATA_ATTR uint8_t GDEW029T5D::oldData[WIDTH * HEIGHT / 8u];
 
 int GDEW029T5D::get_width_internal() { return WIDTH; }
 
-int GDEW029T5D::get_width_controller() { return WIDTH; }
-
 int GDEW029T5D::get_height_internal() { return HEIGHT; }
 
 uint32_t GDEW029T5D::idle_timeout_() { return IDLE_TIMEOUT; }

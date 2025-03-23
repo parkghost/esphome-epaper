@@ -17,8 +17,6 @@ RTC_DATA_ATTR uint32_t DEPG0420::at_update_ = 0;
 
 int DEPG0420::get_width_internal() { return WIDTH; }
 
-int DEPG0420::get_width_controller() { return WIDTH; }
-
 int DEPG0420::get_height_internal() { return HEIGHT; }
 
 uint32_t DEPG0420::idle_timeout_() { return IDLE_TIMEOUT; }

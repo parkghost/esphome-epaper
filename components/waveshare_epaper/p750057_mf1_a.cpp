@@ -18,8 +18,6 @@ RTC_DATA_ATTR uint32_t P750057MF1A::at_update_ = 0;
 
 int P750057MF1A::get_width_internal() { return WIDTH; }
 
-int P750057MF1A::get_width_controller() { return WIDTH; }
-
 int P750057MF1A::get_height_internal() { return HEIGHT; }
 
 uint32_t P750057MF1A::idle_timeout_() { return IDLE_TIMEOUT; }

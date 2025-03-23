@@ -31,8 +31,6 @@ RTC_DATA_ATTR uint32_t GDEM029T94::at_update_ = 0;
 
 int GDEM029T94::get_width_internal() { return WIDTH; }
 
-int GDEM029T94::get_width_controller() { return WIDTH; }
-
 int GDEM029T94::get_height_internal() { return HEIGHT; }
 
 uint32_t GDEM029T94::idle_timeout_() { return IDLE_TIMEOUT; }

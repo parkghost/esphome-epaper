@@ -13,8 +13,6 @@ const char *const GDEW042Z15::TAG = "gdew042z15";
 
 int GDEW042Z15::get_width_internal() { return WIDTH; }
 
-int GDEW042Z15::get_width_controller() { return WIDTH; }
-
 int GDEW042Z15::get_height_internal() { return HEIGHT; }
 
 uint32_t GDEW042Z15::idle_timeout_() { return IDLE_TIMEOUT; }

@@ -47,8 +47,6 @@ RTC_DATA_ATTR uint32_t E0213A09::at_update_ = 0;
 
 int E0213A09::get_width_internal() { return WIDTH; }
 
-int E0213A09::get_width_controller() { return WIDTH; }
-
 int E0213A09::get_height_internal() { return HEIGHT; }
 
 uint32_t E0213A09::idle_timeout_() { return IDLE_TIMEOUT; }

@@ -28,8 +28,6 @@ class GDEY029Z95 : public WaveshareEPaperBWR {
  protected:
   int get_width_internal() override;
 
-  int get_width_controller() override;
-
   int get_height_internal() override;
 
   uint32_t idle_timeout_() override;

@@ -16,8 +16,6 @@ RTC_DATA_ATTR uint32_t GDEY029Z95::at_update_ = 0;
 
 int GDEY029Z95::get_width_internal() { return WIDTH; }
 
-int GDEY029Z95::get_width_controller() { return WIDTH; }
-
 int GDEY029Z95::get_height_internal() { return HEIGHT; }
 
 uint32_t GDEY029Z95::idle_timeout_() { return IDLE_TIMEOUT; }

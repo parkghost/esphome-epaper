@@ -50,8 +50,6 @@ const unsigned char GDEW042M01::LUT_BB1_PARTIAL[] = {  // 01 b
 
 int GDEW042M01::get_width_internal() { return WIDTH; }
 
-int GDEW042M01::get_width_controller() { return WIDTH; }
-
 int GDEW042M01::get_height_internal() { return HEIGHT; }
 
 uint32_t GDEW042M01::idle_timeout_() { return IDLE_TIMEOUT; }
