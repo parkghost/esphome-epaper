@@ -11,7 +11,7 @@ class GDEW029T5D : public WaveshareEPaper {
 
   static const uint16_t HEIGHT = 296;
 
-  static const uint16_t IDLE_TIMEOUT = 3500;
+  static const uint16_t IDLE_TIMEOUT = 6000;
 
   void initialize() override;
 
