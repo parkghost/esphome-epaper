@@ -22,7 +22,7 @@ The following e-paper display models are supported by this component:
 ## Usage
 ```yaml
 external_components:
-  - source: github://parkghost/epd
+  - source: github://parkghost/esphome-epaper
     components: [ waveshare_epaper ]
 
 font:
