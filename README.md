@@ -9,7 +9,7 @@ The following e-paper display models are supported by this component:
 | Model         | Size  | Colors | Resolution | Partial Refresh | Fast Refresh | Tested                                        | Useful for                 | Driver IC         |
 |---------------|-------|--------|------------|-----------------|--------------|-----------------------------------------------|----------------------------|-------------------|
 | e0213a09      | 2.13" | B/W    | 212x104    | Y               | N            | E213A09N(HINK-E0213A07-A1)                    |                            | SSD1675A(IL3897)  |
-| gdeh029a1     | 2.9"  | B/W    | 296x128    | Y               | N            | E029A01(E029A01-FPCA-V2.0) / (EO29A01-FPC-A1) | Good Display GDEH029A1     | SSD1608(IL3820)   |
+| gdeh029a1     | 2.9"  | B/W    | 296x128    | Y               | N            | E029A01(E029A01-FPCA-V2.0) / (E029A01-FPC-A1) | Good Display GDEH029A1     | SSD1608(IL3820)   |
 | gdem029t94    | 2.9"  | B/W    | 296x128    | Y               | N            | Waveshare 2.9" SKU-12563 (FPC-7519rev.b)      | Good Display GDEM029T94    | SSD1680           |
 | gdew029t5d    | 2.9"  | B/W    | 296x128    | Y               | N            | WF0290T5(WFT0290CZ10 LW) / (WFT0290CZ10 LP)   | Good Display GDEW029T5D    | UC8151D           |
 | gdey029z95    | 2.9"  | B/W/R  | 296x128    | N               | Y            | (FPC-A005 20.06.15 TRX)                       | Good Display GDEY029Z95    | SSD1680           |
@@ -50,6 +50,10 @@ display:
       int height = it.get_height();
       it.printf(width/2, height/2, id(roboto_36), TextAlign::CENTER, "Hello World!");
 ```
+
+## Examples
+
+For examples and configurations, visit the [ESPHome E-Paper Examples](https://github.com/parkghost/esphome-epaper-examples).
 
 ## Acknowledgements
 
