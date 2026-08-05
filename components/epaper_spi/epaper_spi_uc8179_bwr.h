@@ -5,8 +5,8 @@
 namespace esphome::epaper_spi {
 
 /**
- * UC8179 3-color (black/white/red) e-paper displays
- * (e.g. Good Display P750057-MF1-A, 800x480).
+ * UC8179 3-color (black/white/red) e-paper displays (e.g. P750057-MF1-A,
+ * 800x480 -- not a Good Display panel, though it matches their GDEY075Z08).
  *
  * Buffer layout: 1 bit per pixel, two separate planes
  * - first half:  Black/White plane (bit 1 = black, 0 = white)
